@@ -32,16 +32,21 @@
           <div class="col-rt-12">
              
              <div class="simpleLogin">
-              <form>
+              <form method="post" action="register2/">
+                {% csrf_token %}
+
                 <legend>Let's register</legend>
                 <fieldset>
+                  <font color="red">{{umsg}}</font>
                   
-                  <input id="name" placeholder="username" type="text" required>
-                  <input id="name" placeholder="firstname" type="text">
-                  <input id="name" placeholder="lastname" type="text">
-                  <input id="name" placeholder="email" type="text" required>
-                  <input id="pass" placeholder="Password" type="password" required>
-                  <input id="pass" placeholder="re_Password" type="password" required>
+                  <input id="name" placeholder="username" type="text" name="uname" required>
+                  <input id="name" placeholder="firstname" type="text" name="fname">
+                  <input id="name" placeholder="lastname" type="text" name="lname">
+                  <font color="red">{{emsg}}</font>
+                  <input id="name" placeholder="email" type="text" name="ename" required>
+                  <font color="red">{{rmsg}}</font>
+                  <input id="pass" placeholder="Password" type="password" name="pname" required>
+                  <input id="pass" placeholder="re_Password" type="password" name="rename" required>
                   <input id="submit" type="submit" value="register">
                 </fieldset>
               </form>

@@ -31,12 +31,13 @@
           <div class="col-rt-12">
              
              <div class="simpleLogin">
-              <form>
+              <form method="post" action="login2/">
+                {% csrf_token %}
                 <legend>Let's Login</legend>
                 <fieldset>
                   
-                  <input id="name" placeholder="Username" type="text">
-                  <input id="pass" placeholder="Password" type="password">
+                  <input id="name" placeholder="Username" type="text" name="uname" required>
+                  <input id="pass" placeholder="Password" type="password" name="pname" required>
                   <input id="submit" type="submit" value="Log in">
                 </fieldset>
               </form>
