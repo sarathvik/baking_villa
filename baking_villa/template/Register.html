@@ -32,7 +32,7 @@
           <div class="col-rt-12">
              
              <div class="simpleLogin">
-              <form method="post" action="register2/">
+              <form method="post" action="{% url 'register' %}">
                 {% csrf_token %}
 
                 <legend>Let's register</legend>

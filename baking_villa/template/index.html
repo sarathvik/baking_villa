@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+{% static "assets/img/products/" as imgurl %}
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -67,13 +68,13 @@
 									</ul>
 								</li>
 								<li><a href="about.html">About</a></li>
-								<li><a href="customer/login/">Login</a>
-									
-								</li>
-								<li><a href="customer/register/">register</a>
-									
-								</li>
-								<li><a href="contact.html">Contact</a></li>
+								{% if user.is_authenticated %}
+								<li><a href="customer/Logout">Logout</a></li>
+								{% else %}
+								<li><a href="{% url 'login' %}">Login</a></li>
+								<li><a href="{% url 'register' %}">register</a></li>
+								{% endif %}
+								
 								<li><a href="shop.html">Shop</a>
 									<ul class="sub-menu">
 										<li><a href="shop.html">Shop</a></li>
@@ -82,6 +83,9 @@
 										<li><a href="cart.html">Cart</a></li>
 									</ul>
 								</li>
+								{% if user.is_authenticated %}
+								<li></li><a href="/">{{user.email}}</a></li>
+								{% endif %}
 								<li>
 									<div class="header-icons">
 										<a class="shopping-cart" href="cart.html"><i class="fas fa-shopping-cart"></i></a>
@@ -197,36 +201,20 @@
 			</div>
 
 			<div class="row">
+				{% for data in proname %}
 				<div class="col-lg-4 col-md-6 text-center">
 					<div class="single-product-item">
 						<div class="product-image">
-							<a href="single-product.html"><img src="{% static 'assets/img/products/product-img-1.jpg' %}" alt=""></a>
+							<a href="single-product.html"><img src="{{imgurl}}{{data.image}}" alt=""></a>
 						</div>
-						<h3>Strawberry</h3>
-						<p class="product-price"><span>Per Kg</span> 85$ </p>
+						<h3>{{data.name}}</h3>
+						<p class="product-price"><span>Per Kg</span> {{data.price}} </p>
 						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
 					</div>
 				</div>
-				<div class="col-lg-4 col-md-6 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.html"><img src="{% static 'assets/img/products/product-img-2.jpg' %}" alt=""></a>
-						</div>
-						<h3>Berry</h3>
-						<p class="product-price"><span>Per Kg</span> 70$ </p>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.html"><img src="{% static 'assets/img/products/product-img-3.jpg' %}" alt=""></a>
-						</div>
-						<h3>Lemon</h3>
-						<p class="product-price"><span>Per Kg</span> 35$ </p>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
+				{% endfor %}
+				
+				
 			</div>
 		</div>
 	</div>

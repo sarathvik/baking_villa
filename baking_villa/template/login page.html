@@ -31,7 +31,7 @@
           <div class="col-rt-12">
              
              <div class="simpleLogin">
-              <form method="post" action="login2/">
+              <form method="post" action="{% url 'login' %}">
                 {% csrf_token %}
                 <legend>Let's Login</legend>
                 <fieldset>
