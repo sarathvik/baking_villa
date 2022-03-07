@@ -85,6 +85,17 @@ DATABASES = {
     }
 }
 
+CACHE = {
+    'default':{
+        'BACKEND':'django_redis.cache.RedisCache',
+        'LOCATION':'redis://127.0.0.1:6379/1',
+        'OPTIONS':{
+            "CLIENT_CLASS":"django_redis.client.DefaultClient",
+        },
+        "KEY_PREFIX":"example",
+    }
+}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -126,6 +137,10 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR,'backup')
+
+#adding media files for the projects
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

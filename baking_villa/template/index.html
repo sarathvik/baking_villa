@@ -32,7 +32,13 @@
 	<link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
 	<!-- responsive -->
 	<link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
-
+<style>
+	.cakeoffer{
+		background-color: yellow;
+		border-radius: 4px;
+		color: black;
+	}
+</style>
 </head>
 <body>
 	
@@ -205,11 +211,16 @@
 				<div class="col-lg-4 col-md-6 text-center">
 					<div class="single-product-item">
 						<div class="product-image">
-							<a href="single-product.html"><img src="{{imgurl}}{{data.image}}" alt=""></a>
+							{% if data.offer_offer2 %}
+						<div class="cakeoffer">offer</div>
+						{% endif %}
+
+						 	
+						<a href="single-product.html"><img src="{{ data.image.url }}" alt=""></a>
 						</div>
 						<h3>{{data.name}}</h3>
 						<p class="product-price"><span>Per Kg</span> {{data.price}} </p>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+						<a href="product/details?id={{data.id}}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
 					</div>
 				</div>
 				{% endfor %}
