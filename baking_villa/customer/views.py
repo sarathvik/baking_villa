@@ -39,15 +39,19 @@ def register(request):
 
             
             
-        else:
-            user = User.objects.create_user(username=uname,first_name=fname,last_name=lname,email=ename,password=pname)
-            user.save();
-            return render(request,'success.html')    
+            else:
+                user = User.objects.create_user(username=uname,first_name=fname,last_name=lname,email=ename,password=pname)
+                user.save();
+                auth.login(request,user)
+                return redirect('/')  
         
-    else:
+        else:
 
-        rmsg="the password is not matching"
-        return render(request,"register.html",{"rmsg":rmsg})
+            rmsg="the password is not matching"
+            return render(request,"register.html",{"rmsg":rmsg})
+
+    else:
+        return render(request,'Register.html')     
 
 
 def Logout(request):

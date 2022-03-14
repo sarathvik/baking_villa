@@ -190,6 +190,8 @@
 	<!-- end breadcrumb section -->
 
 	<!-- single product -->
+	
+	
 	<div class="single-product mt-150 mb-150">
 		<div class="container">
 			<div class="row">
@@ -252,24 +254,27 @@
 					
 				<div class = comment-section>
 					
-			    
-					<p>aju <strong>good...</strong><small>03-03-2022</small></p>
-					<p>aju <strong>good...</strong><small>03-03-2022</small></p>
-					<p>aju <strong>good...</strong><small>03-03-2022</small></p>
-					<p>aju <strong>good...</strong><small>03-03-2022</small></p>
-					<p>aju <strong>good...</strong><small>03-03-2022</small></p>
-					<p>aju <strong>good...</strong><small>03-03-2022</small></p>
-					<p>aju <strong>good...</strong><small>03-03-2022</small></p>
-					<p>aju <strong>good...</strong><small>03-03-2022</small></p>
-				
+			         {% if not product.comments.all %}
+					 <h4>not any comments....</h4>
+					 {% else %}
+					 {% for cmnd in product.comments.all %}
+					<p>{{cmnd.name}} <strong>{{cmnd.messsage}}</strong><small>{{cmnd.date}}</small></p>
+					{% endfor %}
+					{% endif %}
+					
 				</div>
-				<div class="add-comment"> 
-					<form>
-						<textarea></textarea>
+				{% if user.is_authenticated %}
+				<div class="add-comment" > 
+					<form method="post" action="{% url 'details' %}">
+						{% csrf_token %}
+						<textarea name="cmt"></textarea required>
+						<input type="hidden" name="uname" value="{{user.first_name}}">
+						<input type="hidden" name="id" value="{{product.id}}">
 					<button type="submit">comment</button> 
 					</form>
 					
-				</div>	
+				</div>
+				{% endif %}	
 				</div>
 				
 				
